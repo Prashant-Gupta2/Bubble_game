@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+          <style>
+           *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+           }   
+           .box{
+            background-color:cornflowerblue; 
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;      
+           } 
+           .box .panel{
+            overflow: hidden;
+            background-color: azure;
+            height: 80%;
+            width: 80%;
+            box-shadow: 3px 3px 2px 3px gray;
+            border-radius: 5px;
+           }  
+           .panel .ptop{
+            background-color:darkolivegreen;
+            width: 100%;
+            height: 80px;
+            font-size: 20px;
+            display: flex;
+            justify-content:center;
+           } 
+          .box1{
+           background-color: azure;
+           padding: 6px;
+           border-radius: 5px;
+           font-family: Arial;
+           font-weight: bold;
+           color: crimson;
+           margin-right: 10px;
+          }
+          .elm{
+            width: 28%;
+            display: flex;
+            font-family: Arial;
+            align-items: center;
+            gap: 7px; 
+          }
+          .pbot{
+           width: 100%;
+           height: calc(100% - 80px);
+           display: flex;
+           flex-wrap: wrap;
+          }
+
+          .bubble{
+           height: 40px;
+           width: 40px;
+           background-color: green;
+           margin: 10px;
+           border-radius: 50%;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           font-weight: bold;
+           font-family: Arial;
+          }
+          .bubble:hover{
+           background-color:cornflowerblue;
+           cursor: pointer;
+          }
+          h3{
+            font-family: Arial;
+            font-size: 35px;
+            font-weight: bold;
+            color: brown;
+            display: flex;
+            align-items: center;
+            margin-left: 35%;
+          }
+          h3::after{
+            content: "Try Agian";
+            color: green;
+            font-family: Arial;
+          }
+         @media screen and (max-width: 600px)
+         {
+          body{
+           width: 100%;
+          }
+          #left{
+           margin-right: 20px;
+          }
+          .pbot{
+           width: 405px;
+          }
+         } 
+        
+          </style>
+
+          <script type="text/javascript">
+             let times=60;
+             let score=0;
+          function loadclick()
+          {
+            var bub="";        
+           for(let i=0;i<50;i++)
+          {
+            let n=Math.floor(Math.random()*10);
+            bub+=`<div class="bubble">${n}</div>`;
+          } 
+          document.querySelector(".pbot").innerHTML=bub;
+
+          document.querySelector(".pbot").addEventListener("click",function(data){
+        let checknum= Number(data.target.innerHTML);
+        if(checknum===num)
+        {
+          Hitadd();  
+          loadclick();
+          increasescore();
+        } 
+        }) 
+        }
+          function timer()
+          {
+           let cls= setInterval(() => {
+            if(times>0)
+           {
+            times--;
+            document.getElementById("timer").innerHTML=times;
+            document.getElementById("hitnum").innerHTML=num;
+           }
+           else
+           {
+            clearInterval(cls);
+            document.querySelector(".pbot").innerHTML=`<h3> Game Over! </h3>`;
+           }
+           }, 1000);
+          }
+          timer();
+           var num;
+          function Hitadd()
+          {
+           num=Math.floor(Math.random()*10);
+          }
+          Hitadd();
+          function increasescore()
+          {
+            score += 10;
+           document.getElementById("scores").innerText=score;
+          }
+        
+          </script>
+</head>
+
+<body onload="loadclick()">
+   <div class="box">
+     <div class="panel">
+       <div class="ptop">
+           <div class="elm">
+          <div>Hit:</div>
+           <div id="hitnum" class="box1"></div>
+           </div>
+            <div class="elm" id="left">
+            <div>Timer:</div>
+            <div class="box1" id="timer"></div>
+            </div>
+            <div class="elm">
+            <div> Score:</div>
+          <div class="box1" id="scores">0</div>
+         </div>
+        </div>
+       <div class="pbot">
+
+       </div>
+       </div>
+     </div>
+   </div>       
+</body>
+</html>
